@@ -52,7 +52,20 @@ export default function Home() {
     memoryFreeBytes: 0,
   });
 
+  const esPotenciaDeDos = (num: number): boolean => {
+    return num > 0 && (num & (num - 1)) === 0;
+  };
+
   const inicializarGestor = () => {
+    if (!esPotenciaDeDos(memoriaTotal)) {
+      setMensaje("La memoria total debe ser una potencia de 2");
+      return;
+    }
+    if (!esPotenciaDeDos(tamanoBloque)) {
+      setMensaje("El tamaño del bloque debe ser una potencia de 2");
+      return;
+    }
+
     const nuevoGestor = new GestorMemoria(memoriaTotal, tamanoBloque);
     setGestor(nuevoGestor);
     setProcesos([]);
