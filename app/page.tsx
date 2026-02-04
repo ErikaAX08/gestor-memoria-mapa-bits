@@ -65,6 +65,10 @@ export default function Home() {
       setMensaje("El tamaño del bloque debe ser una potencia de 2");
       return;
     }
+    if (tamanoBloque > memoriaTotal) {
+      setMensaje("El tamaño del bloque no puede exceder la memoria total");
+      return;
+    }
 
     const nuevoGestor = new GestorMemoria(memoriaTotal, tamanoBloque);
     setGestor(nuevoGestor);
